@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\v1\GitHubController;
+use App\Http\Controllers\Api\v1\RepositoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->middleware(['ApiKey'])->group(function () {
@@ -11,4 +12,8 @@ Route::prefix('v1')->middleware(['ApiKey'])->group(function () {
             'baseUrl'  => 'http://locahost:9001/api/v1'
         ], 200);
     });
+
+    Route::resource('repositories', RepositoryController::class);
+    Route::get('github', [GitHubController::class, 'index']);
+    Route::post('github/get-repository-by-name', [GitHubController::class, 'getRepositoryByName']);
 });
