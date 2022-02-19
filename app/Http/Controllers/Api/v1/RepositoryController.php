@@ -49,9 +49,9 @@ class RepositoryController extends Controller
         try {
             $repositories = $this->get_all_repositories_service->execute();
 
-            return response()->json([$repositories], 200);
+            return response()->json($repositories, 200);
         }catch(Exception $ex) {
-            return response()->json(['error' => true, 'message' => $ex->getMessage()], 500);
+            return response()->json(['error' => true, 'message' => $ex->getMessage()], $ex->getCode());
         }
     }
 
@@ -69,7 +69,7 @@ class RepositoryController extends Controller
 
             return response()->json([$repository], 201);
         }catch(Exception $ex) {
-            return response()->json(['error' => true, 'message' => $ex->getMessage()], 500);
+            return response()->json(['error' => true, 'message' => $ex->getMessage()], $ex->getCode());
         }
     }
 
@@ -87,7 +87,7 @@ class RepositoryController extends Controller
 
             return response()->json([$repository], 201);
         }catch(Exception $ex) {
-            return response()->json(['error' => true, 'message' => $ex->getMessage()], 500);
+            return response()->json(['error' => true, 'message' => $ex->getMessage()], $ex->getCode());
         }
     }
 
@@ -107,7 +107,7 @@ class RepositoryController extends Controller
 
             return response()->json([$repository], 200);
         }catch(Exception $ex) {
-            return response()->json(['error' => true, 'message' => $ex->getMessage()], 500);
+            return response()->json(['error' => true, 'message' => $ex->getMessage()], $ex->getCode());
         }
     }
 
@@ -125,7 +125,7 @@ class RepositoryController extends Controller
 
             return response()->json(['status' => $res], 201);
         }catch(Exception $ex) {
-            return response()->json(['error' => true, 'message' => $ex->getMessage()], 500);
+            return response()->json(['error' => true, 'message' => $ex->getMessage()], $ex->getCode());
         }
     }
 }

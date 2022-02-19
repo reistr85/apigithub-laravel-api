@@ -5,37 +5,21 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Services\GitHub\GetRepositoriesService;
 use App\Services\GitHub\GetRepositoryByNameService;
+use App\Services\Repositories\StoreRepositoryService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class GitHubController extends Controller
 {
-
-    private GetRepositoriesService $get_repositories_service;
     private GetRepositoryByNameService $get_repository_by_name_service;
+    private StoreRepositoryService $store_repository_service;
 
     public function __construct(
-        GetRepositoriesService $get_repositories_service,
-        GetRepositoryByNameService $get_repository_by_name_service)
+        GetRepositoryByNameService $get_repository_by_name_service,
+        StoreRepositoryService $store_repository_service)
     {
-        $this->get_repositories_service = $get_repositories_service;
         $this->get_repository_by_name_service = $get_repository_by_name_service;
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return JsonResponse
-     */
-    public function index(): JsonResponse
-    {
-        try {
-            $repositories = $this->get_repositories_service->execute();
-
-            return response()->json([$repositories], 200);
-        }catch(Exception $ex) {
-            return response()->json(['error' => true, 'message' => $ex->getMessage()], 500);
-        }
+        $this->store_repository_service = $store_repository_service;
     }
 
     /**
@@ -55,4 +39,5 @@ class GitHubController extends Controller
             return response()->json(['error' => true, 'message' => $ex->getMessage()], 500);
         }
     }
+
 }

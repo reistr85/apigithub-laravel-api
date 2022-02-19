@@ -14,6 +14,5 @@ Route::prefix('v1')->middleware(['ApiKey'])->group(function () {
     });
 
     Route::resource('repositories', RepositoryController::class);
-    Route::get('github', [GitHubController::class, 'index']);
     Route::post('github/get-repository-by-name', [GitHubController::class, 'getRepositoryByName']);
 });

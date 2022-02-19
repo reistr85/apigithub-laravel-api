@@ -24,7 +24,13 @@ class CreateRepositoryRequest extends APIFormRequest
     public function rules()
     {
         return [
+            'github_id' => 'required',
             'name' => 'required',
+            'description' => 'required',
+            'url' => 'required',
+            'avatar_url' => 'required',
+            'stargazers_count' => 'required',
+            'language' => 'required',
         ];
     }
 }
