@@ -10,5 +10,10 @@ class Repository extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['github_id', 'name', 'description', 'url', 'avatar_url', 'stargazers_count', 'language'];
+
+    public function repositoryExistentByGitHubId(int $git_hub_id)
+    {
+        return $this->whereGithubId($git_hub_id)->first() || false;
+    }
 }
