@@ -34,7 +34,7 @@ class GitHubController extends Controller
             $data = $request->only('name');
             $repository = $this->get_repository_by_name_service->execute($data['name']);
 
-            return response()->json([$repository], 200);
+            return response()->json($repository, 200);
         }catch(Exception $ex) {
             return response()->json(['error' => true, 'message' => $ex->getMessage()], 500);
         }

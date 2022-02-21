@@ -85,7 +85,7 @@ class RepositoryController extends Controller
         try {
             $repository = $this->get_repository_by_id_service->execute($id);
 
-            return response()->json([$repository], 201);
+            return response()->json($repository, 200);
         }catch(Exception $ex) {
             return response()->json(['error' => true, 'message' => $ex->getMessage()], $ex->getCode());
         }
@@ -123,7 +123,7 @@ class RepositoryController extends Controller
         try {
             $res = $this->delete_repository_by_id_service->execute($id);
 
-            return response()->json(['status' => $res], 201);
+            return response()->json(['status' => $res], 204);
         }catch(Exception $ex) {
             return response()->json(['error' => true, 'message' => $ex->getMessage()], $ex->getCode());
         }

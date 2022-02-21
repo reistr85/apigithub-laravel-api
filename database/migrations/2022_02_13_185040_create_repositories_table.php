@@ -15,8 +15,13 @@ class CreateRepositoriesTable extends Migration
     {
         Schema::create('repositories', function (Blueprint $table) {
             $table->id();
+            $table->string('github_id');
             $table->string('name');
             $table->text('description');
+            $table->string('url')->after('description');
+            $table->string('avatar_url')->after('url');
+            $table->string('stargazers_count')->after('avatar_url');
+            $table->string('language')->after('stargazers_count');
 
             $table->string('situation')->default('active');
             $table->softDeletes();
